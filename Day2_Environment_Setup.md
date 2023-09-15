@@ -1,10 +1,6 @@
 > 接下來會開始用到許多Terminal 指令，適合有Ubuntu 或Linux 操作經驗的人，使用起來才不會太困難![/images/emoticon/emoticon04.gif](/images/emoticon/emoticon04.gif)
 # 需求
-
-
 -----
-
-
 ## 硬體
 ROS2在硬體的要求上並不高，`x86`及`arm`不論`32bit`或`64bit`要跑起來都沒有問題，只在支援度上有會有差異。樹莓派的話一般會安裝的是`arm32`版本，但根據[官方文件](https://www.ros.org/reps/rep-2000.html)表示，支援度會稍差一點，是屬於Tier 3的硬體架構，不過大致上基本功能都可以運作。
 
@@ -39,11 +35,7 @@ ROS2版本則是建議使用`Foxy`或是`Iron`，這兩個版本是LTS，維護�
 自己的電腦則是Ubuntu 22.04 + ROS2 Iron。當然有需要用到ROS Noetic 再裝Docker(Ubuntu 20.04) + Foxy即可。
 
 # 安裝
-
-
 -----
-
-
 以下有幾種安裝方式:
 
 ## Debian(推薦)
@@ -64,11 +56,7 @@ Github上也有開發者把官方文件寫成[一鍵安裝的Script](https://git
 如果要安裝在其他作業系統環境的話官方也有提供文件，可以參考[這個文件](https://docs.ros.org/en/foxy/Installation.html)。
 
 # Reference
-
-
 -----
-
-
-ROS2 官方安裝文件: https://docs.ros.org/en/foxy/Installation.html
-郭振穎的Hackmd: https://hackmd.io/@evshary/ROS2Note/https%3A%2F%2Fhackmd.io%2F%40evshary%2FROS2installation
-挨踢實驗室：https://www.youtube.com/@itlab.
+* ROS2 官方安裝文件: https://docs.ros.org/en/foxy/Installation.html
+* 郭振穎的Hackmd: https://hackmd.io/@evshary/ROS2Note/https%3A%2F%2Fhackmd.io%2F%40evshary%2FROS2installation
+* 挨踢實驗室：https://www.youtube.com/@itlab.

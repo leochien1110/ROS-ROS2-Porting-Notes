@@ -54,11 +54,11 @@ ROS2的目標就是實現RTOS，具體上就是利用Data Distribution Service (
 # Reference
 這邊特別感謝以下網站讓我的筆記更完整：
 
-ROS2官方教學：https://docs.ros.org/en/foxy/Tutorials.html
-ROS2 Github範例: https://github.com/ros2/examples
-ROS Wiki: https://en.wikipedia.org/wiki/Robot_Operating_System
-蛤ROS自學筆記：https://ithelp.ithome.com.tw/users/20112348/ironman/1965
-郭鎮穎學習筆記：https://hackmd.io/@evshary/ROS2Note/https%3A%2F%2Fhackmd.io%2F%40evshary%2FAboutMe
-What is ROS? https://roboticsbackend.com/what-is-ros/
-Exploring the performance of ROS2: [Maruyama, Yuya, Shinpei Kato, and Takuya Azumi. "Exploring the performance of ROS2." In Proceedings of the 13th International Conference on Embedded Software, pp. 1-10. 2016.](https://ieeexplore.ieee.org/document/7743223)
-THE ROS 1 VS ROS 2 TRANSITION: https://www.swri.org/industry/industrial-robotics-automation/blog/the-ros-1-vs-ros-2-transition
+* ROS2官方教學：https://docs.ros.org/en/foxy/Tutorials.html
+* ROS2 Github範例: https://github.com/ros2/examples
+* ROS Wiki: https://en.wikipedia.org/wiki/Robot_Operating_System
+* 蛤ROS自學筆記：https://ithelp.ithome.com.tw/users/20112348/ironman/1965
+* 郭鎮穎學習筆記：https://hackmd.io/@evshary/ROS2Note/https%3A%2F%2Fhackmd.io%2F%40evshary%2FAboutMe
+* What is ROS? https://roboticsbackend.com/what-is-ros/
+* Exploring the performance of ROS2: [Maruyama, Yuya, Shinpei Kato, and Takuya Azumi. "Exploring the performance of ROS2." In Proceedings of the 13th International Conference on Embedded Software, pp. 1-10. 2016.](https://ieeexplore.ieee.org/document/7743223)
+* THE ROS 1 VS ROS 2 TRANSITION: https://www.swri.org/industry/industrial-robotics-automation/blog/the-ros-1-vs-ros-2-transition
