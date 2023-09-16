@@ -243,33 +243,9 @@ C++和Python的`package.xml`差異不大，這邊就直接用C++的`package.xml`
     <build_type>ament_python</build_type>
 </export>
 ```
-沒錯，Python的`package.xml`只有`export`，因為Python會靠setup.py和setup.cfg來build，而`package.xml`只用來描述這個package的ROS相依。
+沒錯，Python的`package.xml`只有`export`和`exec_depend`，`buildtool_depend`則是因為Python會靠setup.py和setup.cfg而不再需要。
 
 發現有點講太細了，把Python Package的部分獨立出來，明天再來說明。
-
-# Python
-Python的Package應該會長的類似這樣：
-```bash
-py_package_1/
-      package.xml
-      resource/py_package_1
-      setup.cfg
-      setup.py
-      py_package_1/
-```
-## setup.py
-
-## setup.cfg
-
-# ROS vs. ROS2
-
-| 說明  | ROS    | ROS2 |
-| :----| :-----  | :---- |
-| CMake Macro | catkin | ament|
-| 創建Package指令| catkin_create_pkg <package_name> [depend1] [depend2] [depend3] | ros2 pkg create --build-type [depend1] [depend2]  <package_name> |
-| Build Package指令 | catkin build | colcon build|
-| Package語言獨立性 | C++和Python可以放在同一個package內 | C++和Python應獨立成兩個packages |
-| Package 描述檔| CMakeLists.txt & package.xml | C++: CMakeLists.txt & package.xml; Python: setup.py & setup.cfg |
 
 # Reference
 ---
