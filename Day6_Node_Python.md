@@ -29,6 +29,7 @@ Video Source -> **image_publisher** -> `/image` -> **image_resizer** -> `/image_
 
 # Python Node
 Python的API從`ROS`的`rospy`改成`ROS2`的`rclpy`，所以在import的時候要注意。這邊先來簡單的創一個Package和Hello World的Node。
+
 ## 創建Package
 ```bash
 cd ~/ros2_ws/src
@@ -36,7 +37,7 @@ ros2 pkg create --build-type ament_python --node-name hello_world beginner_tutor
 ```
 這邊`--node-name`可以用來創建一個初始的node，並在`setup.py`內幫你寫好entrypoint，這裡是`hello_world_py`。
 
-創建完後，會在`~/ros2_ws/src`底下看到`beginner_tutorials_py`這個資料夾，裡面會：
+創建完後，會在`~/ros2_ws/src`底下看到`beginner_tutorials_py`這個資料夾，裡面有：
 ```bash
 beginner_tutorials_py/
 ├── beginner_tutorials_py
@@ -56,27 +57,46 @@ beginner_tutorials_py/
 其中`beginner_tutorials_py/hello_world.py`就是我們的ROS Node。
 
 ## 撰寫 Hello World Node
-```python
-import rclpy
+1. 首先編輯`hello_world.py`，加上`rclpy`的import：
+    ```python
+    import rclpy
 
-def main(args=None):
-    rclpy.init(args=args)   # 初始化ROS
-    
-    # 創建一個叫做hello_world_py的Node 
-    node = rclpy.create_node('hello_world_py')  
-    
-    # 用Node的get_logger() function來print出Hello World!
-    node.get_logger().info('Hello World!') 
+    def main(args=None):
+        rclpy.init(args=args)   # 初始化ROS
+        
+        # 創建一個叫做hello_world_py的Node 
+        node = rclpy.create_node('hello_world_py')  
+        
+        # 用Node的get_logger() function來print出Hello World!
+        node.get_logger().info('Hello World!') 
 
-    # 讓Node持續運行
-    rclpy.spin(node)
-    
-    # 關閉ROS
-    rclpy.shutdown()
+        # 讓Node持續運行
+        rclpy.spin(node)
+        
+        # 關閉ROS
+        rclpy.shutdown()
 
-if __name__ == '__main__':
-    main()
-```
+    if __name__ == '__main__':
+        main()
+    ```
+
+2. 接著編輯`package.xml`，加上`rclpy`的dependency：
+    ```xml
+    ...
+    <exec_depend>rclpy</exec_depend>
+    ...
+    ```
+
+3. 最後檢查一下`setup.py`，確定entrypoint，讓ros2知道要執行`hello_world.py`的`main` function：
+    ```python
+    ...
+    entry_points={
+            'console_scripts': [
+                'hello_world_py = beginner_tutorials_py.hello_world:main'
+            ],
+        },
+    ... 
+    ```
 
 ## 執行
 回到Workspace底下，執行：
@@ -96,7 +116,7 @@ source ~/ros2_ws/install/setup.bash
 ros2 run beginner_tutorials_py hello_world_py
 ```
 
-理論上就可以看到Timestamp + Hello World!了。不過我們有加了`rclpy.spin(node)`，所以他會一直執行，如果要結束的話，可以按`Ctrl+C`。
+理論上就可以看到`Timestamp` + `Hello World!` 了。不過我們有加了`rclpy.spin(node)`，所以他會一直執行，如果要結束的話，可以按`Ctrl+C`。
 
 ## 持續執行 Hello World Node
 也可以讓Node每秒print一次Hello World!，只要在`hello_world.py`加上loop取代`rclpy.spin(node)`就可以了：
