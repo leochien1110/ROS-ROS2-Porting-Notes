@@ -11,6 +11,7 @@ Publisher 和 Subscriber 可以是一對一、一對多、多對一、多對多�
 # Quality of Service(QoS)
 `ROS2`與`ROS`通訊機制上大同小異，但是`ROS2`採用Data Distribution Service(DDS)取代原本傳統的TCP/UDP的buffer(queue)機制，在溝通時多了一個`Quality of Service`的概念，可以讓使用者針對不同的Topic設定不同的傳輸品質，以確保訊息的可靠性。
 
+TODO: Update the descriptions of QoS Policy.
 ## QoS Policy
 * **History**：決定Publisher發布的訊息要不要保留，以及保留多久的歷史訊息。
 * **Depth**：決定Publisher發布的訊息要保留多少筆。
@@ -21,7 +22,7 @@ Publisher 和 Subscriber 可以是一對一、一對多、多對一、多對多�
 * **Liveliness**：決定Publisher和Subscriber之間的連線狀態。
 * **Lease Duration**：決定Publisher和Subscriber之間的連線要保持多久。
 
-### `ROS`比較與轉換
+### `ROS`比較
 
 | 功能 | ROS | ROS2 |
 | --- | --- | --- |
@@ -44,6 +45,7 @@ Publisher 和 Subscriber 可以是一對一、一對多、多對一、多對多�
   * Lifespan: Default
   * Liveliness: System default
   * Lease Duration: Default
+TODO: List the parameters of each QoS Profile.
 * **Services**：針對Service的QoS Profile，Publisher和Subscriber都是使用這個Profile。
 * **Sensor Data**：針對Sensor Data的QoS Profile，Publisher和Subscriber都是使用這個Profile。
 * **Parameters**：針對Parameters的QoS Profile，Publisher和Subscriber都是使用這個Profile。
@@ -71,9 +73,53 @@ Publisher 和 Subscriber 可以是一對一、一對多、多對一、多對多�
 | Transient Local | Transient Local | Yes | New and old messages |
 
 
-
 # Message
+除了官方有提供個常用的Message(e.g. std_msgs, sensor_msgs, geometry_msgs, nav_msgs, ...)，使用者也可以自行定義Message，只要符合Message格式即可。
 
+
+## `ROS`比較
+`ROS2`中Message的改動不大，除了多了一層namespace `/msg/`，其他的格式都是一樣的。舉例來說，`ROS`中的`std_msgs/String`在`ROS2`中就變成`std_msgs/msg/String`。還有`ROS`中的`Header`在`ROS2`中就變成`std_msgs/Header`。
+
+可以參考[`ROS`的`Image.msg`](https://github.com/ros/common_msgs/blob/noetic-devel/sensor_msgs/msg/Image.msg)和[`ROS2`的`Image.msg`](https://github.com/ros2/common_interfaces/blob/foxy/sensor_msgs/msg/Image.msg)。
+
+### C++ API
+`ROS`
+```cpp
+#include <std_msgs/String.h>
+
+std_msgs::String msg;
+
+msg.data = "Hello World!";
+```
+
+`ROS2`
+```cpp
+#include <std_msgs/msg/string.hpp>
+
+std_msgs::msg::String msg;
+
+msg.data = "Hello World!";
+```
+
+TODO: Validate the usage of `std_msgs::String` in `ROS2`.
+### Python API
+`ROS`
+```python
+from std_msgs.msg import String
+
+msg = String()
+
+msg.data = "Hello World!"
+```
+
+`ROS2`
+```python
+from std_msgs.msg import String
+
+msg = String()
+
+msg.data = "Hello World!"
+```
 
 
 # Reference
