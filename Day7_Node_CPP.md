@@ -1,5 +1,5 @@
 > 延續昨天的主題，今天要來探討C++版本的Node，不過C++的使用上就比較搞剛一些。我會把說明附在comment裡面，這樣可以直接對照每一行的功能。
-> 另外，從這邊開始會帶到一些Command Line Tools(CLI)，這邊會用到`ros2 pkg`和`ros2 run`，這兩個指令可以幫助我們快速的創建Package和執行Node。
+> 另外，從今天開始會帶到一些Command Line Tools(CLI)，這邊會用到`ros2 pkg`和`ros2 node`，這兩個指令可以幫助我們檢查Package和執行Node。
 
 
 # C++ Node
@@ -10,6 +10,8 @@ C++的API從`ROS`的`roscpp`改成`ROS2`的`rclcpp`，所以在include的時候�
 cd ~/ros2_ws/src
 ros2 pkg create --build-type ament_cmake --node-name hello_world beginner_tutorials_cpp
 ```
+跟昨天Python一樣，我們在創建package時，可以用`--node-name`來創建一個初始的node，並在`CMakeLists.txt`內幫你寫好executable，這裡是`hello_world_node`。
+
 
 創建完後，會在`~/ros2_ws/src`底下看到`beginner_tutorials_cpp`這個資料夾，裡面有：
 ```bash
@@ -29,7 +31,7 @@ beginner_tutorials_cpp/
     ```cpp
     #include "rclcpp/rclcpp.hpp"
 
-    // Node header file，目前沒有Class所以不用include
+    // Node header file，目前沒有特別拆開所以不用include
     // #include "beginner_tutorials_cpp/hello_world.hpp"
 
     int main(int argc, char * argv[])
@@ -51,7 +53,11 @@ beginner_tutorials_cpp/
         return 0;
     }
     ```
-2. 再來編輯`CMakeLists.txt`，加入`find_package(rclcpp REQUIRED)`和`ament_target_dependencies(hello_world_node rclcpp)`：
+2. 再來編輯`CMakeLists.txt`：
+
+    分別在對應的位置加入`find_package(rclcpp REQUIRED)`和`ament_target_dependencies(hello_world_node rclcpp)`。
+    
+    不熟悉`CMakeLists.txt`的話可以參考[Day4 ROS2 Package - C++](https://ithelp.ithome.com.tw/articles/10318211)。
     ```cmake
     cmake_minimum_required(VERSION 3.5)
     project(beginner_tutorials_cpp)
@@ -71,6 +77,9 @@ beginner_tutorials_cpp/
 
     # 增加一個executable，名稱叫做hello_world_node，並且link rclcpp
     add_executable(hello_world_node src/hello_world.cpp)
+    target_link_libraries(hello_world_node PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>)
     ament_target_dependencies(hello_world_node rclcpp)
 
     # install這個executable
@@ -90,7 +99,9 @@ beginner_tutorials_cpp/
     ament_package()
     ```
 
-3. 最後編輯`package.xml`，加入`<build_depend>rclcpp</build_depend>`和`<exec_depend>rclcpp</exec_depend>`：
+3. 最後編輯`package.xml`：
+   
+   將`<build_depend>rclcpp</build_depend>`和`<exec_depend>rclcpp</exec_depend>`放入對應的位置：
     ```xml
     ...
     <buildtool_depend>ament_cmake</buildtool_depend>
@@ -101,13 +112,13 @@ beginner_tutorials_cpp/
     ```
 
 ## 執行
-回到Workspace底下，執行build：
+回到Workspace，執行build：
 ```bash
 cd ~/ros2_ws
 colcon build --packages-select beginner_tutorials_cpp
 ```
 
-`--symlink-install`這邊對C++沒有用，所以每次修改完程式碼後都要重新colcon build。
+> ⚠️ `--symlink-install`這邊對C++沒有用，所以每次修改完程式碼後都要重新colcon build。
 
 執行完後記得先source：
 ```bash
@@ -122,7 +133,7 @@ ros2 run beginner_tutorials_cpp hello_world_node
 就可以跟昨天一樣看到`Hello World!`了。
 
 ## 持續執行
-和昨天一樣可以用Loop來讓Node持續輸出，但是C++的寫法跟Python不太一樣，這邊來簡單的介紹一下。
+和昨天一樣可以用Loop來讓Node持續輸出Hello World，但是C++的寫法跟Python不太一樣，這邊來簡單的介紹一下。
 
 ### `ROS` 寫法
 首先第一個方法，跟`ROS`寫法比較接近，使用rate + loop:
@@ -222,11 +233,13 @@ ros2 run beginner_tutorials_cpp hello_world_node
 ```bash
 ros2 pkg list | grep beginner_tutorials
 ```
-如果把`| grep beginner_tutorials`拿掉，可以看到所有的`ROS2` Package。
 
 可以看到我們的`beginner_tutorials_cpp`和`beginner_tutorials_py`。
 
-可以查看可執行的ROS Node:
+如果把`| grep beginner_tutorials`拿掉，可以看到所有的`ROS2` Package。
+
+
+另外還可以查看可執行的ROS Node:
 ```bash
 ros2 pkg executables beginner_tutorials_cpp
 ```
