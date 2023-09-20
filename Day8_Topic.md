@@ -65,7 +65,7 @@ QoS Policy底下有八個選項，可以用來設定訊息傳輸的品質和效�
   * Liveliness: System default
   * Lease Duration: Default
 
-* [**Services**](https://docs.ros2.org/foxy/api/rclcpp/namespacerclcpp.html)：針對Service的QoS Profile，Server和Client。
+* [**Services**](https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1ServicesQoS.html)：針對Service的QoS Profile，Server和Client。
 * [**Sensor Data**](https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1SensorDataQoS.html)：隊sensor的資料，我們注重在他的接收即時性，而不是資料的穩定性。也就是說開發者更在意最新的資料，而可以忍受遺失一些資料，所以reliability是best effort，queue size也比較小。
 * [**Parameters**](https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1ParametersQoS.html)：Parameter在**ROS**中是為Service的一種，所以他的QoS Profile類似Service。唯一的不同是depth queue size大很多，這樣parameter client在失去parameter server的情況下依然可以取得參數。
 * [**System Default**](https://docs.ros2.org/foxy/api/rclcpp/classrclcpp_1_1SystemDefaultsQoS.html)：底層RMW預設的Profile。
