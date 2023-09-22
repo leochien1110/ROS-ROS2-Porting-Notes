@@ -2,7 +2,7 @@
  
 # Publisher
 ---
-一樣我們下載官方的範例後再來講解。
+那就直接開始，一樣下載官方的範例後再來講解。
 
 1. 首先Python和C++原則上不會再像`ROS`一樣共用Package了，因此需要重新建立一個
     ```bash
@@ -73,7 +73,7 @@
 
 using namespace std::chrono_literals;
 ```
-這邊引入需要的Library，其中`rclcpp/rclcpp.hpp`就是ROS2的C++ Library，`std_msgs/msg/string.hpp`就是我們要用到的`std_msgs::msg::String`。記得等一下要把這些Library加入到`CMakeLists.txt`和`package.xml`中。
+這邊引入需要的Library，其中`rclcpp/rclcpp.hpp`就是ROS2的C++ Library，`std_msgs/msg/string.hpp`就是要用到的`std_msgs::msg::String`。記得等一下要把這些Library加入到`CMakeLists.txt`和`package.xml`中。
 
 ```cpp
 class MinimalPublisher : public rclcpp::Node
@@ -185,7 +185,7 @@ install(TARGETS
 ament_package()
 ```
 
-我們等Subcriber實作完後再來Build和執行。
+這邊等Subcriber實作完後再來一起Build和執行就可以了。
 
 # Subscriber
 ---
@@ -276,6 +276,8 @@ rosdep install -i --from-path src --rosdistro foxy -y
 ```bash
 colcon build --packages-select cpp_pubsub
 ```
+注意這邊`--symlink-install`對C++是沒有用的，只有Python以及後面launch file才會用到。
+
 最後source
 ```bash
 source install/setup.bash
@@ -307,6 +309,9 @@ ros2 run cpp_pubsub listener
 >:warning: 注意不可以同時打開兩個packages的`talker`或是`listener`，因為的node name都是一樣的，會造成衝突。
 >
 > 可以試著改變其中一個的node name，就可以同時打開兩個`talker`或是兩個`listener`了，看看會有什麼變化。
+
+# QoS
+礙於篇幅和時間，之後有時間再來補充C++ QoS的部分好了，怕太長會勸退大家![/images/emoticon/emoticon13.gif](/images/emoticon/emoticon13.gif)
 
 # Reference
 ---
