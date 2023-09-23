@@ -17,8 +17,8 @@ Topic
 
 Service
 * Day11 [Service](Day11_Service.md)
-* Day12 [Service Server](Day12_Service_Server.md)
-* Day13 [Service Client](Day13_Service_Client.md)
+* Day12 [Service Node - Python](Day12_Service_Server.md)
+* Day13 [Service Node - C++](Day13_Service_Client.md)
 * Day14 [Custom Message & Service](Day14_Custom_msg_srv.md)
 * Day15 [Action](Day15_Action.md)
 * 
