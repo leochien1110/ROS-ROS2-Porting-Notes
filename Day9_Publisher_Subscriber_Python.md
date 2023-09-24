@@ -248,6 +248,7 @@ entry_points={
 },
 ```
 
+# Build and Run
 ## Build
 養成好習慣，在workspace時可以先跑`rosdep`來檢查一下dependency是否有安裝
 ```bash
@@ -287,6 +288,8 @@ ros2 run py_pubsub listener
 ...
 ```
 不過因為Subscriber是後開，只會收到開始跑之後的訊息，除非要去設定QoS。另外也可以先跑Subscriber，再跑Publisher，這樣就可以收到所有的訊息。
+
+另外Publisher的部分也可以用指令來執行，會等Service介紹完後，一起介紹。
 
 # QoS
 ---
