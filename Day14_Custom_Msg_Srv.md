@@ -1,4 +1,19 @@
+> 雖然官方已經有提供不少好用的Message，但是有時候還是會需要客製化的Message，像是影像偵測完需要畫框，或是需要客製化的Service，像是特規機器人的導航等等，這時候就需要自己來客製化Message和Service。
 
+# 預設 Message
+這邊先介紹常用的Message有：
+* std_msgs：一些基礎的資料型態，可以去下面Message Fieldtype查看
+* geometry_msgs：一些幾何的資料型態，例如Point, Pose, Twist等等
+* sensor_msgs：一些感測器的資料型態，例如Image, PointCloud2, NavSatFix等等
+* nav_msgs：導航的資料型態，例如Odometry, Path等等
+* visualization_msgs：rviz用來畫圖的plugin，例如Marker, MarkerArray等等
+
+其他還有路徑、地圖、Action等等，可以上Github看[ROS2 Common Interface](https://github.com/ros2/common_interfaces/tree/foxy)的內容，裡面有很多預設的Message可以使用。也可以查看[ROS2 Foxy API - msgs & srvs](https://docs.ros2.org/foxy/api/)。
+
+# 客制化 Message
+
+
+# 客製化 Service
 
 
 # Message Fieldtype
@@ -51,3 +66,5 @@ string<=10[<=5] up_to_five_strings_up_to_ten_characters_each # 長度不超過5�
 ---
 * [Implementing custom interfaces](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html)
 * [ROS Interfaces](https://docs.ros.org/en/foxy/Concepts/About-ROS-Interfaces.html)
+* [ROS Common Interface Github](https://github.com/ros2/common_interfaces/tree/foxy)
+* [ROS2 Foxy API - msgs & srvs](https://docs.ros2.org/foxy/api/)
