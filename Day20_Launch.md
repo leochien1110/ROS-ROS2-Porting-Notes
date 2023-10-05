@@ -220,7 +220,7 @@ def generate_launch_description():
     node_name = LaunchConfiguration("node_name", default="camera1")
     param_file = LaunchConfiguration("param_file", default=FindPackageShare("package_name") + "/param/param.yaml")
 
-    # Following line DOES NOT WORK!!!
+    # Following line DOES NOT WORK!!! Please check下方個人筆記的部分
     # print("node_name: {}".format(node_name))
 
     return LaunchDescription([
