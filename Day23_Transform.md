@@ -53,13 +53,21 @@ tf2功能很多，這邊只會利用官方的Turtlebot介紹一些基本的功�
 
 除了上述API的`broadcast`和`listen`之外，`tf2`還有不少實用的功能:
 1. `view_frames`: 畫出frame之間的關係。
+    ```bash
+    ros2 run tf2_tools view_frames.py
+    ```
     
-    透過`ros2 run tf2_tools view_frames.py`，就可以將目前Scene中的frame關係畫出來並存到`frames.pdf`中，讓我們可以觀察frame之間的關係。
+    就可以將目前Scene中的frame關係畫出來並存到`frames.pdf`中，讓我們可以觀察frame之間的關係。
 2. `tf2_echo`: 顯示frame之間的關係。
-    
-    透過`ros2 run tf2_ros tf2_echo [source_frame] [target_frame]`，就可以顯示兩個frame之間的關係。
+    ```bash
+    ros2 run tf2_ros tf2_echo [source_frame] [target_frame]
+    ```
 
-    上述例子中，我們可以透過`ros2 run tf2_ros tf2_echo turtle1 turtle2`來顯示`turtle1`和`turtle2`之間的關係。
+    上述例子中，我們可以透過
+    ```bash
+    ros2 run tf2_ros tf2_echo turtle1 turtle2
+    ```
+    來顯示`turtle1`和`turtle2`之間的關係。
 
 3. `rviz`: 3D視覺化工具。
     ```bash
@@ -298,7 +306,7 @@ def generate_launch_description():
 
 # Reference
 ---
-* [ROS2 tf2](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html)
+* [ROS2 Introducing tf2](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Introduction-To-Tf2.html)
 * [ROS2 Quaternions](https://docs.ros.org/en/foxy/Tutorials/Intermediate/Tf2/Quaternion-Fundamentals.html)
 * [Roation Matrix](https://en.wikipedia.org/wiki/Rotation_matrix)
 * [Quaternion](https://en.wikipedia.org/wiki/Quaternion)
