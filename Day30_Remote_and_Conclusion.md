@@ -2,8 +2,22 @@
 ---
 上述的各種操作都是在本機端進行，但是如果要在遠端進行呢？在一般的使用情境下，我們並無法把螢幕鍵盤滑鼠都接在機器人上跟著走，所以會需要透過遠端來進行操作和訊息傳遞。
 
-**ROS**是基於網路架構的，所以只要兩台電腦在同一個區域網路下，就可以進行遠端操作。在`ROS`中，主要透過設定`ROS_MASTER_URI`和`ROS_IP`來進行遠端操作。
+**ROS**是基於網路架構的，所以只要兩台電腦在同一個區域網路下，就可以進行遠端操作。
 
+## ROS
+在`ROS`中，主要透過設定`ROS_MASTER_URI`和上`ROS_IP`來進行遠端操作。
+1. 在機器人(ROS Master Server)上:
+    ```bash
+    export ROS_IP=<robot_ip>
+    roscore
+    ```
+2. 在電腦(ROS Client)上:
+    ```bash
+    export ROS_MASTER_URI=http://<robot_ip>:11311
+    export ROS_IP=<client_ip>
+    ```
+
+## ROS2
 在`ROS2`中，底層已經使用`DDS`，所以在區域網路中是以**Multicast**，所以不需要設定`ROS_MASTER_URI`和`ROS_IP`，只需要設定`ROS_DOMAIN_ID`即可，一般預設為`0`。兩台電腦都設定一樣才能讓`ROS2`跨裝置溝通。以下為設定範例：
 
 1. 首先要確認兩台電腦都在同一個區域網路下，並且拿到機器人的IP位址:
@@ -91,6 +105,14 @@
     ros2 run demo_nodes_cpp listener
     ```
     如果可以在電腦上看到機器人發送的訊息，則表示遠端操作成功！！！
+
+## ROS vs. ROS2
+---
+| 說明 | ROS | ROS2 |
+| --- | --- | --- |
+| 機器人上 | `export ROS_IP=<robot_ip>` | `export ROS_DOMAIN_ID=30` |
+| 電腦上 | `export ROS_MASTER_URI=http://<robot_ip>:11311`<br>`export ROS_IP=<client_ip>` | `export ROS_DOMAIN_ID=30` |
+
 
 
 # 總結
