@@ -1,4 +1,4 @@
-# Plugin
+# Plugins
 ---
 **ROS**中有個特別的package叫做`pluginlib`，這個package提供了一個plugin的架構，讓我們可以在不修改原始碼的情況下，動態的載入plugin，類似於C++的多型(polymorphism)。這樣可以讓程式更有彈性，也更容易擴充。
 
